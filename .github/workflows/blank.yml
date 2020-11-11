@@ -31,3 +31,9 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
+      # Checkout another repository
+      - uses: actions/checkout@master
+        with:
+          name: mcbstest/AtlassianDeveloperTools     <-- clone https://github.com/org1/repo1
+          ref: refs/heads/master
