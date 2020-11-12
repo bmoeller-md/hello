@@ -31,9 +31,9 @@ jobs:
       - name: Check content
         shell: cmd
         run: |
-          git clone https://mcbstest:qs_mcbs_11@github.com/mcbstest/AtlassianDeveloperTools
+          C:\Programme\Git\bin\git clone https://mcbstest:qs_mcbs_11@github.com/mcbstest/AtlassianDeveloperTools
           dir
           cd AtlassianDeveloperTools
-          git describe --abbrev=0 --tags
+          C:\Programme\Git\bin\git describe --abbrev=0 --tags
          
      
