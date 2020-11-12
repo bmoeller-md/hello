@@ -61,4 +61,3 @@ jobs:
           dir
           echo %MeineKomponente%
         
-          
