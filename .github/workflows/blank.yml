@@ -34,7 +34,7 @@ jobs:
           C:\Programme\Git\bin\git clone https://mcbstest:qs_mcbs_11@github.com/mcbstest/AtlassianDeveloperTools
           dir
           cd AtlassianDeveloperTools
-          set lt=C:\Programme\Git\bin\git describe --abbrev=0 --tags
-          echo "Last Tag : %lt%"
-         
-     
+          C:\Programme\Git\bin\git describe --abbrev=0 --tags  > temp.txt
+          set /p LastTag=<temp.txt
+          echo "Last Tag : %LastTag%"
+          
