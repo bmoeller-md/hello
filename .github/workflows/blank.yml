@@ -45,6 +45,6 @@ jobs:
       - name: list tags
         run: |
           dir
-          
+          cd devtools
           C:\Programme\Git\bin\git.exe describe --abbrev=0 --tags
      
