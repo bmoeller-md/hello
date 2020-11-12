@@ -30,7 +30,7 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo $component
-          // rmdir ms-gateway
+          # rmdir ms-gateway
           
           mkdir $component
           cd $component
