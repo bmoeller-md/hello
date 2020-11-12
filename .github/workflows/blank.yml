@@ -28,47 +28,34 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
-        run: 
+        run: |
           echo $component
-          # alte Ergebnisse entfernen / aufraeumen
-          rmdir /s $component
-
-          # Verzeichnis erzeugen und dort arbeiten
+          rmdir ms-gateway
+          
           mkdir $component
           cd $component
 
-          # repository manuell clonen
           git clone https://mcbstest:qs_mcbs_11@stashweb.mobilcom.de/scm/$component.git
           cd ms-gateway
-          # Branch holen
+          
           git checkout release
-
-          # develop mergen
-          # git merge develop
-
-          # zurueck auf den Server
-          # git push
-
-          # letztes Tag ermitteln
-          lastTag=`git describe --abbrev=0 --tags`
+          const lastTag = `git describe --abbrev=0 --tags`
           echo "Last Tag : $lastTag"
 
-          # hashcode fuer das vorherige release (i.e. lastTag)
           tag=`git show "$lastTag" | grep commit | cut -d ' ' -f 2`
           echo "Tag-Address ($lastTag) : $tag"
 
-          # merges
           git log $tag..HEAD --pretty=format:"%s %an" | grep "Merge" | grep "from" | cut -d '/' -f 3 | grep -Eo '^ABRMS-[0-9]{4}'  | cut -d '-' -f 1,2 | sort | uniq >> a.txt
           git log $tag..HEAD --pretty=format:"%s %an" | grep "Merge" | grep "from" | cut -d '/' -f 3 | grep -Eo '^MCBS-[0-9]{4}'  | cut -d '-' -f 1,2 | sort | uniq >> a.txt
-          # commits
+          // commits
           git log $tag..HEAD --pretty=format:"%s %an" | grep "^\[ABRMS*" | cut -d ' ' -f 1 | sed s'/.$//' | sed s'/^.//' | sort | uniq >> a.txt
           git log $tag..HEAD --pretty=format:"%s %an" | grep "^\[MCBS*" | cut -d ' ' -f 1 | sed s'/.$//' | sed s'/^.//' | sort | uniq >> a.txt
-          # commits
+          // commits
           git log $tag..HEAD --pretty=format:"%s %an" | grep "^ABRMS*" | cut -d ' ' -f 1 | cut -d ':' -f 1|sort | uniq >> a.txt
-          #git log $tag..HEAD --pretty=format:"%s %an" | grep -Eo '^ABRMS-[0-9]{4}' | cut -d ' ' -f 1 | sort | uniq >> a.txt
+          //git log $tag..HEAD --pretty=format:"%s %an" | grep -Eo '^ABRMS-[0-9]{4}' | cut -d ' ' -f 1 | sort | uniq >> a.txt
           git log $tag..HEAD --pretty=format:"%s %an" | grep "^MCBS*" | cut -d ' ' -f 1 | sort | uniq >> a.txt
 
-          # sortieren und ausgeben
+          // sortieren und ausgeben
           cat a.txt | sort | uniq > ../../branch_issues.txt
         env:
           component: ms-gateway
