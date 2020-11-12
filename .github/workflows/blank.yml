@@ -26,39 +26,12 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          gh --version
-          
-          echo ms-gateway
-          # rmdir ms-gateway
-          
-          mkdir ms-gateway
-          cd ms-gateway
+      # Checkout a different repository
+      - name: Check out my other private repo
+        uses: actions/checkout@master
+        with:
+          repository: mcbstest/AtlassianDeveloperTools
+          token: ${{ secrets.MCBSTEST_TOKEN }}
 
-          git clone https://mcbstest:qs_mcbs_11@stashweb.mobilcom.de/scm/ms-gateway.git
-          cd ms-gateway
-          
-          git checkout release
-          const lastTag = `git describe --abbrev=0 --tags`
-          echo "Last Tag : $lastTag"
-
-          tag=`git show "$lastTag" | grep commit | cut -d ' ' -f 2`
-          echo "Tag-Address ($lastTag) : $tag"
-
-          git log $tag..HEAD --pretty=format:"%s %an" | grep "Merge" | grep "from" | cut -d '/' -f 3 | grep -Eo '^ABRMS-[0-9]{4}'  | cut -d '-' -f 1,2 | sort | uniq >> a.txt
-          git log $tag..HEAD --pretty=format:"%s %an" | grep "Merge" | grep "from" | cut -d '/' -f 3 | grep -Eo '^MCBS-[0-9]{4}'  | cut -d '-' -f 1,2 | sort | uniq >> a.txt
-          // commits
-          git log $tag..HEAD --pretty=format:"%s %an" | grep "^\[ABRMS*" | cut -d ' ' -f 1 | sed s'/.$//' | sed s'/^.//' | sort | uniq >> a.txt
-          git log $tag..HEAD --pretty=format:"%s %an" | grep "^\[MCBS*" | cut -d ' ' -f 1 | sed s'/.$//' | sed s'/^.//' | sort | uniq >> a.txt
-          // commits
-          git log $tag..HEAD --pretty=format:"%s %an" | grep "^ABRMS*" | cut -d ' ' -f 1 | cut -d ':' -f 1|sort | uniq >> a.txt
-          //git log $tag..HEAD --pretty=format:"%s %an" | grep -Eo '^ABRMS-[0-9]{4}' | cut -d ' ' -f 1 | sort | uniq >> a.txt
-          git log $tag..HEAD --pretty=format:"%s %an" | grep "^MCBS*" | cut -d ' ' -f 1 | sort | uniq >> a.txt
-
-          // sortieren und ausgeben
-          cat a.txt | sort | uniq > ../../branch_issues.txt
-        env:
-          component: ms-gateway
+      
      
