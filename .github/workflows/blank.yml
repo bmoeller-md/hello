@@ -39,4 +39,11 @@ jobs:
         run: |
           cd devtools
           dir
+          pwd
+          
+      # list tags
+      - name: list tags
+        run: |
+          pwd
+          git describe --abbrev=0 --tags
      
