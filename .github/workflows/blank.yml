@@ -30,11 +30,11 @@ jobs:
       - name: Run a multi-line script
         run: |
           # alte Ergebnisse entfernen / aufraeumen
-          rmdir /S /Q ${bamboo.component}
+          rmdir /s $component
 
           # Verzeichnis erzeugen und dort arbeiten
-          mkdir ${bamboo.component}
-          cd ${bamboo.component}
+          mkdir $component
+          cd $component
 
           # repository manuell clonen
           git clone https://mcbstest:qs_mcbs_11@stashweb.mobilcom.de/scm/$component.git
