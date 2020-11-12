@@ -32,6 +32,11 @@ jobs:
         with:
           repository: mcbstest/AtlassianDeveloperTools
           token: ${{ secrets.MCBSTEST_TOKEN }}
-
-      
+          path: devtools
+          
+      # Check the content
+      - name: Check content
+        run:
+          cd devtools
+          dir
      
