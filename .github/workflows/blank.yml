@@ -45,5 +45,7 @@ jobs:
       - name: list tags
         run: |
           pwd
+          dir
+          cmd
           git describe --abbrev=0 --tags
      
