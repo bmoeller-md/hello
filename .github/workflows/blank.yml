@@ -35,6 +35,6 @@ jobs:
           dir
           cd AtlassianDeveloperTools
           set lt=C:\Programme\Git\bin\git describe --abbrev=0 --tags
-          echo "Last Tag : $lt"
+          echo "Last Tag : %lt"
          
      
