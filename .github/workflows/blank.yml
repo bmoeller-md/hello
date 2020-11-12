@@ -25,16 +25,16 @@ jobs:
    
     # Checkout component (hello)
       - name: Check content
-        shell: bash
+        shell: cmd
         run: |
           if exist "hello" rd /q /s "hello"
-          git clone https://github.com/bmoeller-md/hello
+          C:\Programme\Git\bin\git clone https://github.com/bmoeller-md/hello
                       
       # Checkout AtlassianDeveloperTools
       - name: Check content
-        shell: bash
+        shell: cmd
         run: |
-          rm -rf AtlassianDeveloperTools
+          if exist "AtlassianDeveloperTools" rd /q/s "AtlassianDeveloperTools"
           C:\Programme\Git\bin\git clone https://mcbstest:qs_mcbs_11@github.com/mcbstest/AtlassianDeveloperTools
           
       # View directory
@@ -45,7 +45,7 @@ jobs:
         
       # checck component's tags    
       - name: check tags
-        shell: bash
+        shell: cmd
         run: |
           cd hello
           C:\Programme\Git\bin\git describe --abbrev=0 --tags  > temp.txt
