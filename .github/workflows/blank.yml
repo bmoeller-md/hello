@@ -30,7 +30,7 @@ jobs:
       - name: Run a multi-line script
         run: |
           # alte Ergebnisse entfernen / aufraeumen
-          rm -rf ${bamboo.component}
+          rmdir /S /Q ${bamboo.component}
 
           # Verzeichnis erzeugen und dort arbeiten
           mkdir ${bamboo.component}
