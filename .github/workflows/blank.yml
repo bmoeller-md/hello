@@ -25,14 +25,16 @@ jobs:
    
     # Checkout component (hello)
       - name: Check content
-        shell: cmd
+        shell: bash
         run: |
-          C:\Programme\Git\bin\git clone https://github.com/bmoeller-md/hello
+          rm -rf hello
+          git clone https://github.com/bmoeller-md/hello
                       
       # Checkout AtlassianDeveloperTools
       - name: Check content
-        shell: cmd
+        shell: bash
         run: |
+          rm -rf AtlassianDeveloperTools
           C:\Programme\Git\bin\git clone https://mcbstest:qs_mcbs_11@github.com/mcbstest/AtlassianDeveloperTools
           
       # View directory
@@ -43,7 +45,7 @@ jobs:
         
       # checck component's tags    
       - name: check tags
-        shell: cmd
+        shell: bash
         run: |
           cd hello
           C:\Programme\Git\bin\git describe --abbrev=0 --tags  > temp.txt
@@ -56,7 +58,7 @@ jobs:
           
       # create new version
       - name: create new version
-        shell: cmd
+        shell: bash
         run: | 
           dir
           echo %MeineKomponente%
