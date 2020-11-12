@@ -27,7 +27,7 @@ jobs:
       - name: Check content
         shell: bash
         run: |
-          rm -rf hello
+          if exist "hello" rd /q /s "hello"
           git clone https://github.com/bmoeller-md/hello
                       
       # Checkout AtlassianDeveloperTools
