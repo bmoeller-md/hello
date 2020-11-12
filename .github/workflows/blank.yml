@@ -70,5 +70,5 @@ jobs:
           # sortieren und ausgeben
           cat a.txt | sort | uniq > ../../branch_issues.txt
         env:
-          component=ms-gateway
+          component: ms-gateway
      
