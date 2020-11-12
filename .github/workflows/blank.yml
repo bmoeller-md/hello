@@ -34,7 +34,7 @@ jobs:
           C:\Programme\Git\bin\git clone https://mcbstest:qs_mcbs_11@github.com/mcbstest/AtlassianDeveloperTools
           dir
           cd AtlassianDeveloperTools
-          lt=C:\Programme\Git\bin\git describe --abbrev=0 --tags
+          set lt=C:\Programme\Git\bin\git describe --abbrev=0 --tags
           echo "Last Tag : $lt"
          
      
