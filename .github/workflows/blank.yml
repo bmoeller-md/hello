@@ -45,6 +45,6 @@ jobs:
       - name: list tags
         run: |
           dir
-          cmd git --version
-          C:\Program Files\Git\bin\git.exe describe --abbrev=0 --tags
+          
+          C:\Programme\Git\bin\git.exe describe --abbrev=0 --tags
      
