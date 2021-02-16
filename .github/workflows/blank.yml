@@ -23,43 +23,11 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
    
-    # Checkout component (hello)
-      - name: Check content
-        shell: cmd
-        run: |
-          if exist "hello" rd /q /s "hello"
-          C:\Programme\Git\bin\git clone https://github.com/bmoeller-md/hello
-                      
-      # Checkout AtlassianDeveloperTools
-      - name: Check content
-        shell: cmd
-        run: |
-          if exist "AtlassianDeveloperTools" rd /q/s "AtlassianDeveloperTools"
-          C:\Programme\Git\bin\git clone https://mcbstest:qs_mcbs_11@github.com/mcbstest/AtlassianDeveloperTools
-          
-      # View directory
-      - name: view dierectory
-        shell: cmd
-        run: dir
-        
-        
+            
       # checck component's tags    
       - name: check tags
         shell: cmd
         run: |
-          cd hello
-          C:\Programme\Git\bin\git describe --abbrev=0 --tags  > temp.txt
-          set /p LastTag=<temp.txt
-          echo "Last Tag : %LastTag%"
-          // hashcode fuer das vorherige release (i.e. lastTag)
-          C:\Programme\Git\bin\git show "%LastTag%" | grep commit | cut -d ' ' -f 2` > temp.txt
-          set /p TagAddress=<temp.txt
-          echo "Tag-Address (%LastTag%) : %TagAddress%"
+          dir /p
           
-      # create new version
-      - name: create new version
-        shell: bash
-        run: | 
-          dir
-          echo %MeineKomponente%
-        
+    
