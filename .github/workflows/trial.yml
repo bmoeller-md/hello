@@ -1,0 +1,17 @@
+on: [push]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    steps:
+    - uses: actions/checkout@v2
+    
+    - run: |
+        pattern='\<N[O]COMMIT\>'
+        output=$(git diff-index --cached --unified=0 --pickaxe-regex -S "$pattern" HEAD) || exit
+        if [ -n "$output" ]; then
+            printf 'forbidden pattern "%s" found:\n%s\n' "$pattern" "$output" >&2
+            exit 1
+        fi
+  
