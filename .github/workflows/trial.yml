@@ -15,7 +15,7 @@ jobs:
         if [ -n "$output" ]; then
             printf 'forbidden pattern "%s" found:\n%s\n' "$pattern" "$output" >&2
             exit 1
-        elif
+        else
           echo "Else ..."
         fi
   
