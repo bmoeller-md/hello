@@ -11,7 +11,7 @@ jobs:
         echo "Start ..."
         pattern='\<N[O]COMMIT\>'
         echo "Check ..."
-         lastTag=`git describe --abbrev=0 --tags --match "${{inputs.MATCH}}"`
+        # lastTag=`git describe --abbrev=0 --tags --match "${{inputs.MATCH}}"`
         # git diff-index --cached --unified=0 --pickaxe-regex -S "$pattern" HEAD
         output=`git diff-index --cached --unified=0 --pickaxe-regex -S "$pattern" HEAD`
         echo $output
