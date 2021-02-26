@@ -6,14 +6,11 @@ jobs:
     name: A job to say hello
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     
     - run: |
         echo "Start ...."
-        pattern='\<N[O]COMMIT\>'
-        echo "Check ..."
-        output=`git log --all | grep "Update"`
-        echo $output
-        
         # letztes Tag ermitteln
         lastTag=`git describe --abbrev=0 --tags --match "1.1.1"`
         echo "Last Tag : ${lastTag}"
