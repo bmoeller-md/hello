@@ -13,6 +13,18 @@ jobs:
         echo "Check ..."
         output=`git log --all | grep "Update"`
         echo $output
+        
+        # letztes Tag ermitteln
+        lastTag=`git describe --abbrev=0 --tags --match "1.1.1"`
+        echo "Last Tag : ${lastTag}"
+        # hashcode fuer das vorherige release (i.e. lastTag)
+        tag=`git show "$lastTag" | grep commit | cut -d ' ' -f 2`
+        echo "Tag-Addresse ($lastTag) : $tag"
+        
+        if ! git log $tag..HEAD --quiet --pretty=format:"%s %an" | grep "<NOCOMMENT>" ; then
+          echo "kein Eintrag"
+        fi
+        
         if [ -n "$output" ]; then
             printf 'forbidden pattern "%s" found:\n%s\n' "$pattern" "$output" >&2
             exit 1
