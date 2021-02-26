@@ -18,7 +18,7 @@ jobs:
         tag=`git show "$lastTag" | grep commit | cut -d ' ' -f 2`
         echo "Tag-Addresse ($lastTag) : $tag"
         
-        if ! git log $tag..HEAD --quiet --pretty=format:"%s %an" | grep "<NOCOMMENT>" ; then
+        if ! git log $tag..HEAD --quiet --pretty=format:"%s %an" | grep "<NOCOMMIT>" ; then
           echo "kein Eintrag"
         fi
         
