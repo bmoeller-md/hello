@@ -8,10 +8,14 @@ jobs:
     - uses: actions/checkout@v2
     
     - run: |
+        echo "Start ..."
         pattern='\<N[O]COMMIT\>'
+        echo "Check ..."
         output=$(git diff-index --cached --unified=0 --pickaxe-regex -S "$pattern" HEAD) || exit
         if [ -n "$output" ]; then
             printf 'forbidden pattern "%s" found:\n%s\n' "$pattern" "$output" >&2
             exit 1
+        elif
+          echo "Else ..."
         fi
   
