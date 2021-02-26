@@ -11,7 +11,7 @@ jobs:
         echo "Start ...."
         pattern='\<N[O]COMMIT\>'
         echo "Check ..."
-        output=`git log --all | grep "NOCOMMIT"`
+        output=`git log --all | grep "Update"`
         echo $output
         if [ -n "$output" ]; then
             printf 'forbidden pattern "%s" found:\n%s\n' "$pattern" "$output" >&2
