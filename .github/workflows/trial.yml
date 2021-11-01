@@ -10,8 +10,8 @@ jobs:
         fetch-depth: 0
     
     - name: Merge development -> staging
-        uses: devmasx/merge-branch@master
-        with:
+      uses: devmasx/merge-branch@master
+      with:
           type: now
           from_branch: release
           target_branch: develop
