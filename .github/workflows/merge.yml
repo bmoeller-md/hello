@@ -29,7 +29,15 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+      
+      - name: Change RELEASE
+        shell: bash
+        run: |
           
+          echo "RELEASE" >> hallo.txt
+          git -am "Anpassung in release" commit
+          git tag -a v1.4 -m "my version 1.4"
+         
       # ##################################################################################
       # Re-Merge
       # ##################################################################################
