@@ -1,33 +1,51 @@
-# This is a basic workflow to help you get started with Actions
+name: Build
 
-name: CI
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
+# Kontrolliert, welche Events die Action auslösen
 on:
   push:
-    branches: [ master ]
+    branches-ignore:
+      - release
   pull_request:
-    branches: [ master ]
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+    branches-ignore:
+      - release
+      - develop
+  workflow_dispatch:
+    inputs:
+      gradleOptions:
+        description: 'Zusätzliche optionale Gradle Parameter'
+        required: false
+      epic:
+        description: EPIC als eventuelle Releaseklammer (META-170 = keine / unbestimmt)
+        required: false
+        default: META-170
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
-    runs-on: [self-hosted]
-    
-    env:
-      component: MeineKomponente
-    
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    # self-hosted Runner für die Steps benutzen, um Zugriff auf MD Systeme zu haben
+    runs-on: [ self-hosted ]
+
     steps:
-   
-            
-      # checck component's tags    
-      - name: check tags
-        shell: cmd
+      # Owner für alle Dateien des $GITHUB_WORKSPACE auf den Runner User setzen
+      - name: Change Owner to Runner User
+        if: ${{ always() }}
         run: |
-          dir /p
-          
-    
+          docker run --rm -v `pwd`:/target -w /target -t docker-base.mobilcom.de/ubuntu/ubuntu_1804_lts:latest sh -c "chown $(id -u):$(id -g) -R /target"
+      # Leeren Workspace sicherstellen
+      - name: Ensure clean workspace
+        run: |
+          echo "Cleaning up previous run"
+          rm -rf *
+     
+
+      # ##################################################################################
+      # Re-Merge
+      # ##################################################################################
+      - name: Merge development -> staging
+        shell: bash
+        run: |
+          git checkout develop
+          git merge --no-ff --no-commit release
+          git reset ${{ github.event.repository.default_branch }} -- hallo.txt
+          git checkout gradle.properties
+          # git commit -am "Merge release -> ${{ github.event.repository.default_branch }}"
+          # git push
+      
