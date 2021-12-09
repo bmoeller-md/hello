@@ -35,7 +35,7 @@ jobs:
         run: |
           
           echo "RELEASE" >> hallo.txt
-          git -am "Anpassung in release" commit
+          git commit -am "Anpassung in release"
           git tag -a v1.4 -m "my version 1.4"
          
       # ##################################################################################
