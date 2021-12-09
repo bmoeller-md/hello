@@ -1,4 +1,2 @@
 Dies ist Hallo
 in DEVELOP
-RELEASE
-RELEASE
