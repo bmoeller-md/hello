@@ -1,0 +1,51 @@
+name: Build
+
+# Kontrolliert, welche Events die Action auslösen
+on:
+  push:
+    branches-ignore:
+      - release
+  pull_request:
+    branches-ignore:
+      - release
+      - develop
+  workflow_dispatch:
+    inputs:
+      gradleOptions:
+        description: 'Zusätzliche optionale Gradle Parameter'
+        required: false
+      epic:
+        description: EPIC als eventuelle Releaseklammer (META-170 = keine / unbestimmt)
+        required: false
+        default: META-170
+jobs:
+  build:
+    # self-hosted Runner für die Steps benutzen, um Zugriff auf MD Systeme zu haben
+    runs-on: [ self-hosted ]
+
+    steps:
+      
+      # Repository auschecken unter $GITHUB_WORKSPACE
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          
+      # ##################################################################################
+      # Re-Merge
+      # ##################################################################################
+      - name: Merge development -> staging
+        shell: bash
+        run: |
+          echo "1"
+          git checkout develop
+          echo "2"
+          git merge --no-ff --no-commit release
+          echo "3"
+          git reset develop -- hallo.txt
+          echo "4"
+          git checkout hallo.txt
+          echo "5"
+          git commit -am "Merge release -> develop"
+          echo "6"
+          git push
+      
