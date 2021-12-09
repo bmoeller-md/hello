@@ -9,3 +9,9 @@ Issue #2 mit Inhalt : Nix
 
 Und ein neuer Text
 zum Mergen
+
+ABer 
+jetzt
+kann
+ich
+mergen ?
