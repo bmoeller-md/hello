@@ -24,7 +24,12 @@ jobs:
     runs-on: [ self-hosted ]
 
     steps:
-       
+      
+      # Repository auschecken unter $GITHUB_WORKSPACE
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          
       # ##################################################################################
       # Re-Merge
       # ##################################################################################
