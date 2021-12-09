@@ -24,12 +24,7 @@ jobs:
     runs-on: [ self-hosted ]
 
     steps:
-      # Owner für alle Dateien des $GITHUB_WORKSPACE auf den Runner User setzen
-      - name: Change Owner to Runner User
-        if: ${{ always() }}
-        run: |
-          docker run --rm -v `pwd`:/target -w /target -t docker-base.mobilcom.de/ubuntu/ubuntu_1804_lts:latest sh -c "chown $(id -u):$(id -g) -R /target"
-      # Leeren Workspace sicherstellen
+            # Leeren Workspace sicherstellen
       - name: Ensure clean workspace
         run: |
           echo "Cleaning up previous run"
