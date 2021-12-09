@@ -9,10 +9,8 @@ jobs:
       with:
         fetch-depth: 0
     
-    - name: Merge development -> staging
-      uses: devmasx/merge-branch@master
+    - name: docker
+      uses: mosteo-actions/docker-run@v1
       with:
-          type: now
-          from_branch: release
-          target_branch: develop
-          github_token: ${{ github.token }}
+       image: ubuntu:18.04
+       command: ls -l
