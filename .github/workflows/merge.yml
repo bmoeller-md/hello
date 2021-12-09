@@ -43,9 +43,9 @@ jobs:
           echo "3"
           git reset develop -- hallo.txt
           echo "4"
-          git checkout gradle.properties
+          git checkout hallo.txt
           echo "5"
-          git commit -am "Merge release -> ${{ github.event.repository.default_branch }}"
+          git commit -am "Merge release -> develop"
           echo "6"
           git push
       
