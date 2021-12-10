@@ -1,1 +1,6 @@
-Dies ist Hallo in develop
+Dies ist Hallo
+VERSION=LATEST:123
+in DEVELOP
+RELEASE
+RELEASE
+RELEASE

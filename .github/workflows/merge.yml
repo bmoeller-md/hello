@@ -5,10 +5,7 @@ on:
   push:
     branches-ignore:
       - release
-  pull_request:
-    branches-ignore:
-      - release
-      - develop
+  
   workflow_dispatch:
     inputs:
       gradleOptions:
@@ -24,18 +21,37 @@ jobs:
     runs-on: [ self-hosted ]
 
     steps:
-     
 
+      # Repository auschecken unter $GITHUB_WORKSPACE
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      
+      - name: Change RELEASE
+        shell: bash
+        run: |
+          echo "1"
+          echo "RELEASE" >> hallo.txt
+          echo "BM" >> hello.txt
+          #Versionsnummer anhand Parameter eintragen
+          sed -i "s/VERSION = .*/VERSION = 1.2.3/g" hallo.txt
+         
       # ##################################################################################
       # Re-Merge
       # ##################################################################################
       - name: Merge development -> staging
         shell: bash
         run: |
+          echo "1"
           git checkout develop
+          echo "2"
           git merge --no-ff --no-commit release
-          git reset ${{ github.event.repository.default_branch }} -- hallo.txt
-          git checkout gradle.properties
-          # git commit -am "Merge release -> ${{ github.event.repository.default_branch }}"
-          # git push
+          echo "3"
+          git reset develop -- hallo.txt
+          echo "4"
+          git checkout hallo.txt
+          echo "5"
+          git commit -am "Merge release -> develop"
+          echo "6"
+          git push
       
