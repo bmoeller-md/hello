@@ -33,6 +33,11 @@ jobs:
           echo "1"
           echo "RELEASE" >> hallo.txt
           echo "BM" >> hello.txt
+          #Versionsnummer anhand Parameter eintragen
+          sed -i "s/VERSION = .*/VERSION = 1.2.3/g" hallo.txt
+
+          echo "=================================================================================="
+          cat hallo.txt
           echo "2"
           git tag "2.0.0" -am "my new version"
           echo "3"
