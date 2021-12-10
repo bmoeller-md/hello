@@ -21,7 +21,7 @@ jobs:
     runs-on: [ self-hosted ]
 
     steps:
-      
+
       # Repository auschecken unter $GITHUB_WORKSPACE
       - uses: actions/checkout@v2
         with:
@@ -35,15 +35,6 @@ jobs:
           echo "BM" >> hello.txt
           #Versionsnummer anhand Parameter eintragen
           sed -i "s/VERSION = .*/VERSION = 1.2.3/g" hallo.txt
-
-          echo "=================================================================================="
-          cat hallo.txt
-          echo "2"
-          git tag "2.0.0" -am "my new version"
-          echo "3"
-          git commit -am "Anpassung in release"
-          echo "4"
-          git push
          
       # ##################################################################################
       # Re-Merge
