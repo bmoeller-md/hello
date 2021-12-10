@@ -34,7 +34,7 @@ jobs:
           echo "RELEASE" >> hallo.txt
           echo "BM :: ${{ github.event.inputs.epic }} " >> hello.txt
           #Versionsnummer anhand Parameter eintragen
-          sed -i "s/VERSION = .*/VERSION = 1.2.3/g" hallo.txt
+          sed -i "s/VERSION=.*/VERSION=1.2.3/g" hallo.txt
           cat hallo.txt
           echo "2"
           git tag "2.0.0"
