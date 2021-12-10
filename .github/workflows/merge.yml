@@ -32,8 +32,9 @@ jobs:
         run: |
           echo "1"
           echo "RELEASE" >> hallo.txt
+          echo "BM" >> hello.txt
           echo "2"
-          git tag -a "2.0.0" -m "my new version"
+          git tag "2.0.0" -am "my new version"
           echo "3"
           git commit -am "Anpassung in release"
           echo "4"
